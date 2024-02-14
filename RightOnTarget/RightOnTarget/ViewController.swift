@@ -8,10 +8,29 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let slider = UISlider()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        setupLayout()
+    }
+    
+    func setupLayout() {
+        view.addSubview(slider)
+        
+        configureSlider()
+    }
+    
+    func configureSlider() {
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            slider.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            slider.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            slider.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 20)
+        ])
     }
 
 
