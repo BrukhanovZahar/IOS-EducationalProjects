@@ -41,6 +41,9 @@ class ViewController: UIViewController {
         slider.tintColor = .systemPurple
         slider.minimumValueImage = UIImage(systemName: "01.square.fill")
         slider.maximumValueImage = UIImage(systemName: "50.square.fill")
+        slider.minimumValue = 1
+        slider.maximumValue = 50
+        slider.value = 25
                 
         NSLayoutConstraint.activate([
             slider.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
