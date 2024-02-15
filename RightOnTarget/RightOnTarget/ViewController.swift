@@ -12,6 +12,10 @@ class ViewController: UIViewController {
     let slider = UISlider()
     let button = UIButton()
     let label = UILabel()
+    
+    var number = 0
+    var round = 0
+    var points = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +62,8 @@ class ViewController: UIViewController {
         button.setTitleColor(.systemIndigo, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         
+        button.addTarget(self, action: #selector(checkNumber), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             button.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 30)
@@ -73,7 +79,41 @@ class ViewController: UIViewController {
             label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 30)
         ])
     }
-
+    
+    @objc func checkNumber() {
+        
+        if round == 0 {
+            number = Int.random(in: 1...50)
+            label.text = "\(number)"
+            round = 1
+        } else {
+            let numberOnSlider = Int(slider.value.rounded())
+            
+            if numberOnSlider > number {
+                points += 50 - numberOnSlider + number
+            } else if numberOnSlider < number {
+                points += 50 - number + numberOnSlider
+            } else {
+                points += 50
+            }
+            
+            if round == 5 {
+                let alert = UIAlertController(title: "Игра окончена", message: "Вы заработали \(points) очков", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: { _ in
+                    self.number = Int.random(in: 1...50)
+                    self.label.text = "\(self.number)"
+                }))
+                present(alert, animated: true)
+                round = 1
+                points = 0
+            } else {
+                round += 1
+                
+                number = Int.random(in: 1...50)
+                label.text = "\(number)"
+            }
+        }
+    }
 
 }
 
