@@ -17,6 +17,11 @@ class ViewController: UIViewController {
     var number = 0
     var round = 1
     var points = 0
+    
+    override func loadView() {
+        super.loadView()
+        print("loadView")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
