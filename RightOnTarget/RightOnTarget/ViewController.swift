@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     let slider = UISlider()
     let button = UIButton()
     let label = UILabel()
+    let versionLabel = UILabel()
     
     var number = 0
     var round = 1
@@ -31,11 +32,13 @@ class ViewController: UIViewController {
         view.addSubview(slider)
         view.addSubview(button)
         view.addSubview(label)
+        view.addSubview(versionLabel)
         
         configureView()
         configureSlider()
         configureButton()
         configureLabel()
+        configureVersionLabel()
     }
     
     func configureView() {
@@ -81,6 +84,18 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 30)
+        ])
+    }
+    
+    func configureVersionLabel() {
+        versionLabel.translatesAutoresizingMaskIntoConstraints = false
+        versionLabel.text = "Версия 1.1"
+        
+        NSLayoutConstraint.activate([
+            versionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            versionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            versionLabel.widthAnchor.constraint(equalToConstant: 200),
+            versionLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
     
