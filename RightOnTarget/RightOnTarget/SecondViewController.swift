@@ -9,6 +9,8 @@ import UIKit
 
 class SecondViewController: UIViewController {
     
+    let button = UIButton()
+    
     override func loadView() {
         super.loadView()
         print("loadView SecondViewController")
@@ -17,6 +19,8 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad SecondViewController")
+        
+        setupLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,4 +42,21 @@ class SecondViewController: UIViewController {
         super.viewDidDisappear(animated)
         print("viewDidDisappear SecondViewController")
     }
+    
+    func setupLayout() {
+        view.addSubview(button)
+        
+        configureButton()
+    }
+    
+    func configureButton() {
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Назад", for: .normal)
+        
+        NSLayoutConstraint.activate([
+            button.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+        ])
+    }
+    
 }
