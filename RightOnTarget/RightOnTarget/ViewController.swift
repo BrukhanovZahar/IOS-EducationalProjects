@@ -11,10 +11,8 @@ class ViewController: UIViewController {
     
     let slider = UISlider()
     let button = UIButton()
-    let infoButton = UIButton(type: .system)
     let label = UILabel()
     let versionLabel = UILabel()
-    lazy var secondViewController = SecondViewController()
     
     var number = 0
     var round = 1
@@ -58,14 +56,12 @@ class ViewController: UIViewController {
     func setupLayout() {
         view.addSubview(slider)
         view.addSubview(button)
-        view.addSubview(infoButton)
         view.addSubview(label)
         view.addSubview(versionLabel)
         
         configureView()
         configureSlider()
         configureButton()
-        configureInfoButton()
         configureLabel()
         configureVersionLabel()
     }
@@ -103,18 +99,6 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             button.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 30)
-        ])
-    }
-    
-    func configureInfoButton() {
-        infoButton.translatesAutoresizingMaskIntoConstraints = false
-        infoButton.setTitle("О программе", for: .normal)
-        
-        infoButton.addTarget(self, action: #selector(showInfoScreen), for: .touchUpInside)
-        
-        NSLayoutConstraint.activate([
-            infoButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 20),
-            infoButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
@@ -170,9 +154,4 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc func showInfoScreen() {
-        self.present(secondViewController, animated: true, completion: nil)
-    }
-    
 }
-
