@@ -14,7 +14,7 @@ protocol GameProtocol {
     
     func restartGame()
     func startNewRound()
-    func calculateSCORE(with value: Int)
+    func calculateScore(with value: Int)
 }
 
 
@@ -59,7 +59,7 @@ class Game: GameProtocol {
         return (minSecretValue...maxSecretValue).randomElement() ?? 0
     }
     
-    func calculateSCORE(with value: Int) {
+    func calculateScore(with value: Int) {
         if value > currentSecretValue {
             score += 50 - value + currentSecretValue
         } else if value < currentSecretValue {

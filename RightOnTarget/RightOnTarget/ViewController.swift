@@ -14,9 +14,7 @@ class ViewController: UIViewController {
     let label = UILabel()
     let versionLabel = UILabel()
     
-    var number = 0
-    var round = 1
-    var points = 0
+    var game: Game!
     
     override func loadView() {
         super.loadView()
@@ -29,8 +27,8 @@ class ViewController: UIViewController {
         
         setupLayout()
         
-        number = Int.random(in: 1...50)
-        label.text = "\(number)"
+        game = Game(startValue: 1, endValue: 50, rounds: 5)
+        updateLabelWithSecretNumber(newText: String(game.currentSecretValue))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,7 +112,7 @@ class ViewController: UIViewController {
     
     func configureVersionLabel() {
         versionLabel.translatesAutoresizingMaskIntoConstraints = false
-        versionLabel.text = "Версия 1.1"
+        versionLabel.text = "Версия 1.2"
         
         NSLayoutConstraint.activate([
             versionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
@@ -124,34 +122,28 @@ class ViewController: UIViewController {
         ])
     }
     
-    @objc func checkNumber() {
+    @objc private func checkNumber() {
+        game.calculateScore(with: Int(slider.value))
         
-        let numberOnSlider = Int(slider.value.rounded())
-        
-        if numberOnSlider > number {
-            points += 50 - numberOnSlider + number
-        } else if numberOnSlider < number {
-            points += 50 - number + numberOnSlider
+        if game.isGameEnded {
+            showAlertWith(score: game.score) { _ in
+                self.game.restartGame()
+                self.updateLabelWithSecretNumber(newText: String(self.game.currentSecretValue))
+            }
         } else {
-            points += 50
+            game.startNewRound()
+            updateLabelWithSecretNumber(newText: String(game.currentSecretValue))
         }
-        
-        if round == 5 {
-            
-            let alert = UIAlertController(title: "Игра окончена", message: "Вы заработали \(points) очков", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: { _ in
-                self.number = Int.random(in: 1...50)
-                self.label.text = "\(self.number)"
-            }))
-            present(alert, animated: true)
-            
-            round = 1
-            points = 0
-        } else {
-            round += 1
-            number = Int.random(in: 1...50)
-            label.text = "\(number)"
-        }
+    }
+    
+    private func updateLabelWithSecretNumber(newText: String) {
+        label.text = newText
+    }
+    
+    private func showAlertWith(score: Int, clouse: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: "Игра окончена", message: "Вы заработали \(score) очков", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: clouse))
+        self.present(alert, animated: true)
     }
     
 }
