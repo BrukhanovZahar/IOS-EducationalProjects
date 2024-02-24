@@ -113,7 +113,7 @@ class ViewController: UIViewController {
     
     func configureVersionLabel() {
         versionLabel.translatesAutoresizingMaskIntoConstraints = false
-        versionLabel.text = "Версия 1.2"
+        versionLabel.text = "Версия 1.3"
         
         NSLayoutConstraint.activate([
             versionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),

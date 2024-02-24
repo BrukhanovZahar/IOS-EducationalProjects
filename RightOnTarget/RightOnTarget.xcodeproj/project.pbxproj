@@ -14,6 +14,8 @@
 		55C686692B7C28470066E633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55C686682B7C28470066E633 /* Assets.xcassets */; };
 		55C6866C2B7C28470066E633 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55C6866A2B7C28470066E633 /* LaunchScreen.storyboard */; };
 		55D74FE22B82BDE100C0C093 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D74FE12B82BDE100C0C093 /* Game.swift */; };
+		55D925DA2B8AA7B400F49575 /* GameRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D925D92B8AA7B400F49575 /* GameRound.swift */; };
+		55D925DC2B8AA9B800F49575 /* GeneratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D925DB2B8AA9B800F49575 /* GeneratorProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		55C6866B2B7C28470066E633 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55C6866D2B7C28470066E633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55D74FE12B82BDE100C0C093 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		55D925D92B8AA7B400F49575 /* GameRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRound.swift; sourceTree = "<group>"; };
+		55D925DB2B8AA9B800F49575 /* GeneratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				55D74FE12B82BDE100C0C093 /* Game.swift */,
+				55D925D92B8AA7B400F49575 /* GameRound.swift */,
+				55D925DB2B8AA9B800F49575 /* GeneratorProtocol.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,8 +156,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				55C686642B7C28460066E633 /* ViewController.swift in Sources */,
+				55D925DC2B8AA9B800F49575 /* GeneratorProtocol.swift in Sources */,
 				55C686602B7C28460066E633 /* AppDelegate.swift in Sources */,
 				55C686622B7C28460066E633 /* SceneDelegate.swift in Sources */,
+				55D925DA2B8AA7B400F49575 /* GameRound.swift in Sources */,
 				55D74FE22B82BDE100C0C093 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,7 +324,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrZahar.RightOnTarget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -344,7 +352,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrZahar.RightOnTarget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
