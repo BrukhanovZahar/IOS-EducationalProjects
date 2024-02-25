@@ -7,69 +7,40 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class NumberViewController: UIViewController {
     
     let slider = UISlider()
     let button = UIButton()
     let label = UILabel()
-    let versionLabel = UILabel()
     
-    var game: Game!
-    
-    override func loadView() {
-        super.loadView()
-        print("loadView")
-    }
+    var game: Game<SecretNumericValue>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
         
+        print("Number viewDidLoad")
         setupLayout()
         
-        let generator = NumberGenerator(startValue: 1, endValue: 50)!
-        game = Game(valueGenerator: generator, rounds: 5)
-        updateLabelWithSecretNumber(newText: String(game.currentRound.currentSecretValue))
+        game = (GameFactory.getNumericGame() as! Game<SecretNumericValue>)
+        updateLabelWithSecretNumber(newText: String(game.secretValue.value))
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("viewWillAppear")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("viewDidAppear")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("viewWillDisappear")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print("viewDidDisappear")
-    }
-    
-    func setupLayout() {
+    private func setupLayout() {
         view.addSubview(slider)
         view.addSubview(button)
         view.addSubview(label)
-        view.addSubview(versionLabel)
         
         configureView()
         configureSlider()
         configureButton()
         configureLabel()
-        configureVersionLabel()
     }
     
-    func configureView() {
+    private func configureView() {
         view.backgroundColor = .systemYellow
     }
     
-    func configureSlider() {
+    private func configureSlider() {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumTrackTintColor = .systemPink
         slider.thumbTintColor = .systemPink
@@ -87,7 +58,7 @@ class ViewController: UIViewController {
         ])
     }
     
-    func configureButton() {
+    private func configureButton() {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Проверить", for: .normal)
         button.setTitleColor(.systemIndigo, for: .normal)
@@ -101,7 +72,7 @@ class ViewController: UIViewController {
         ])
     }
     
-    func configureLabel() {
+    private func configureLabel() {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "0"
         
@@ -111,29 +82,19 @@ class ViewController: UIViewController {
         ])
     }
     
-    func configureVersionLabel() {
-        versionLabel.translatesAutoresizingMaskIntoConstraints = false
-        versionLabel.text = "Версия 1.3"
-        
-        NSLayoutConstraint.activate([
-            versionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            versionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            versionLabel.widthAnchor.constraint(equalToConstant: 200),
-            versionLabel.heightAnchor.constraint(equalToConstant: 20)
-        ])
-    }
-    
     @objc private func checkNumber() {
-        game.currentRound.calculateScore(with: Int(slider.value))
+        var userSecretValue = game.secretValue
+        userSecretValue.value = Int(slider.value)
+        game.calculateScore(secretValue: game.secretValue, userValue: userSecretValue)
         
         if game.isGameEnded {
             showAlertWith(score: game.score) { _ in
                 self.game.restartGame()
-                self.updateLabelWithSecretNumber(newText: String(self.game.currentRound.currentSecretValue))
+                self.updateLabelWithSecretNumber(newText: String(self.game.secretValue.value))
             }
         } else {
             game.startNewRound()
-            updateLabelWithSecretNumber(newText: String(game.currentRound.currentSecretValue))
+            updateLabelWithSecretNumber(newText: String(game.secretValue.value))
         }
     }
     
