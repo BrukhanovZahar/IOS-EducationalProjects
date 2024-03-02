@@ -17,19 +17,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="10N-4m-UKT">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="ko9-dw-lL5"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="HrG-Vq-diw"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7X-VO-OZp">
+                                <rect key="frame" x="0.0" y="769" width="393" height="49"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Uqm-iO-6hE"/>
+                                    <barButtonItem title="Создать контакт" id="fcG-TD-ZGJ"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="j7X-VO-OZp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7Xq-p2-FiO"/>
                             <constraint firstItem="10N-4m-UKT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="FUb-GA-cXm"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="10N-4m-UKT" secondAttribute="bottom" id="hyN-TD-n0W"/>
+                            <constraint firstItem="j7X-VO-OZp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Hcm-6B-qYW"/>
+                            <constraint firstItem="j7X-VO-OZp" firstAttribute="top" secondItem="10N-4m-UKT" secondAttribute="bottom" id="J1x-nI-Ag0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="j7X-VO-OZp" secondAttribute="bottom" id="UsQ-FM-kNK"/>
                             <constraint firstItem="10N-4m-UKT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="p67-yf-M1k"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="10N-4m-UKT" secondAttribute="trailing" id="rzt-Rh-yuU"/>
                         </constraints>
@@ -37,7 +47,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="5"/>
+            <point key="canvasLocation" x="136.64122137404578" y="4.9295774647887329"/>
         </scene>
     </scenes>
     <resources>
