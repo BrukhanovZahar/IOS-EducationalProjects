@@ -9,7 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var contacts: [ContactProtocol] = []
+    @IBOutlet weak var tableView: UITableView!
+    private var contacts: [ContactProtocol] = [] {
+        didSet {
+            contacts.sort{ $0.title < $1.title }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +26,31 @@ class ViewController: UIViewController {
         contacts.append(Contact(title: "Саня Техосмотр", phone: "+799912312323"))
         contacts.append(Contact(title: "Владимир Анатольевич", phone: "+781213342321"))
         contacts.append(Contact(title: "Сильвестр", phone: "+7000911112"))
-        contacts.sort{ $0.title < $1.title }
+    }
+    
+    @IBAction func showNewContactAlert() {
+        let alertControler = UIAlertController(title: "Создайте новый контакт", message: "Введите имя и телефон", preferredStyle: .alert)
+        alertControler.addTextField { textField in
+            textField.placeholder = "Имя"
+        }
+        alertControler.addTextField { textField in
+            textField.placeholder = "Номер телефона"
+        }
+        
+        let createButton = UIAlertAction(title: "Создать", style: .default) { _ in
+            guard let contactName = alertControler.textFields?[0].text, let contactPhone = alertControler.textFields?[1].text else { return }
+            
+            let newContact = Contact(title: contactName, phone: contactPhone)
+            self.contacts.append(newContact)
+            self.tableView.reloadData()
+        }
+        
+        let cancelButton = UIAlertAction(title: "Отменить", style: .cancel)
+        
+        alertControler.addAction(cancelButton)
+        alertControler.addAction(createButton)
+        
+        self.present(alertControler, animated: true)
     }
 
 }
